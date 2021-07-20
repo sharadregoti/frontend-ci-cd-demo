@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-sso-demo
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: react-sso-demo
+  template:
+    metadata:
+      labels:
+        app: react-sso-demo
+    spec:
+      containers:
+      - image: sharadregoti/react-sso-demo:latest
+        name: react-sso-demo
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
